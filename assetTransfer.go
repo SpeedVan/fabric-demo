@@ -6,12 +6,12 @@ package main
 import (
 	"log"
 
-	src "github.com/SpeedVan/fabric-demo/chaincode"
+	chaincode "github.com/SpeedVan/fabric-demo/chaincode"
 	"github.com/hyperledger/fabric-contract-api-go/contractapi"
 )
 
 func main() {
-	assetChaincode, err := contractapi.NewChaincode(&src.SmartContract{})
+	assetChaincode, err := contractapi.NewChaincode(&chaincode.SmartContract{})
 	if err != nil {
 		log.Panicf("Error creating fabric-demo chaincode: %v", err)
 	}

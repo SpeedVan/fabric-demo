@@ -7,13 +7,13 @@ import (
 	"github.com/hyperledger/fabric-contract-api-go/contractapi"
 )
 
-// SmartContract provides functions for managing an Asset
-type SmartContract struct {
+// SmartContract2 provides functions for managing an Asset
+type SmartContract2 struct {
 	contractapi.Contract
 }
 
-// Asset sample asset for transfer
-type Asset struct {
+// Asset2 sample asset for transfer
+type Asset2 struct {
 	ID             string `json:"ID"`
 	Color          string `json:"color"`
 	Size           int    `json:"size"`
@@ -22,7 +22,7 @@ type Asset struct {
 }
 
 // CreateAsset issues a new asset to the world state with given details.
-func (s *SmartContract) CreateAsset(ctx contractapi.TransactionContextInterface, id string, color string, size int, owner string, appraisedValue int) error {
+func (s *SmartContract2) CreateAsset(ctx contractapi.TransactionContextInterface, id string, color string, size int, owner string, appraisedValue int) error {
 	exists, err := s.AssetExists(ctx, id)
 	if err != nil {
 		return err
@@ -31,7 +31,7 @@ func (s *SmartContract) CreateAsset(ctx contractapi.TransactionContextInterface,
 		return fmt.Errorf("the asset %s already exists", id)
 	}
 
-	asset := Asset{
+	asset := Asset2{
 		ID:             id,
 		Color:          color,
 		Size:           size,
@@ -47,7 +47,7 @@ func (s *SmartContract) CreateAsset(ctx contractapi.TransactionContextInterface,
 }
 
 // AssetExists returns true when asset with given ID exists in world state
-func (s *SmartContract) AssetExists(ctx contractapi.TransactionContextInterface, id string) (bool, error) {
+func (s *SmartContract2) AssetExists(ctx contractapi.TransactionContextInterface, id string) (bool, error) {
 	assetJSON, err := ctx.GetStub().GetState(id)
 	if err != nil {
 		return false, fmt.Errorf("failed to read from world state: %v", err)
